@@ -1,0 +1,428 @@
+/* General Body Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f4f4f9;
+    color: #333;
+    line-height: 1.6;
+    scroll-behavior: smooth;
+    background-image: url('allbg.avif');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+/* Navbar Styles */
+.navbar {
+    height: 48px;
+    padding: 0 24px;
+    background: rgba(0, 0, 0, 0.3); /* semi-transparent black */
+    box-shadow: none;
+    display: flex;
+    align-items: center;
+    transition: background 0.3s;
+}
+
+.navbar .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.navbar-brand {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.2);
+    margin-right: 32px;
+    margin-left: 0;
+}
+
+.navbar-nav {
+    display: flex;
+    gap: 18px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-nav li a {
+    color: #fff;
+    font-size: 1rem;
+    padding: 6px 10px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+    background: rgba(0,0,0,0.08);
+}
+
+.navbar-nav li a:hover {
+    background: rgba(255,255,255,0.15);
+    color: #e0e0e0;
+}
+
+/* Main Content Styles */
+.main-content {
+    padding: 60px 0;
+    text-align: center;
+    min-height: calc(100vh - 220px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* --- Upload Section --- */
+#upload-section {
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    padding: 32px 24px;
+    margin-bottom: 32px;
+    max-width: 540px;
+    margin: 0 auto 32px auto;
+}
+
+#upload-section h2,
+#upload-section p,
+#upload-section .file-name {
+    color: #000;
+    text-shadow: none;
+}
+
+.upload-section h2 {
+    margin-bottom: 10px;
+    font-size: 2rem;
+}
+
+.upload-section p {
+    margin-bottom: 30px;
+    color: #666;
+}
+
+.upload-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    height: 140px;
+}
+
+.file-name {
+    order: 1;
+    color: #555;
+    word-break: break-all;
+}
+
+.browse-btn {
+    order: 2;
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.create-quiz-btn {
+    background-color: #4fc3f7;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 28px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: background 0.2s, color 0.2s;
+}
+
+.create-quiz-btn:hover {
+    background-color: #039be5;
+    color: #e3f2fd;
+}
+
+/* --- Quiz and Result Sections --- */
+.hidden {
+    display: none;
+}
+
+#quiz-container, #result-container {
+    background: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 700px;
+    width: 100%;
+    text-align: center;
+}
+
+#question-text {
+    margin-bottom: 30px;
+    font-size: 1.5rem;
+}
+
+.btn-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 15px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.btn:hover:not([disabled]) {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.btn.correct {
+    background-color: #28a745;
+}
+
+.btn.wrong {
+    background-color: #dc3545;
+}
+
+.btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.quiz-footer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#next-btn, #restart-btn {
+    background-color: #ffc107;
+    color: #333;
+    font-weight: bold;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+#result-container h2 {
+    margin-bottom: 20px;
+}
+
+#result-container p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+
+/* --- About and Contact Sections --- */
+.about-section, .contact-section {
+    padding: 60px 0;
+    text-align: center;
+}
+
+.about-section {
+    background: url('about-bg.avif') center center/cover no-repeat;
+    position: relative;
+    padding: 48px 0;
+}
+
+.about-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.35);
+    z-index: 0;
+    border-radius: inherit;
+}
+
+.about-container {
+    position: relative;
+    z-index: 1;
+}
+
+.about-section h2 {
+    color: #111;
+    text-shadow: none;
+}
+
+.about-section p, .contact-section p {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+}
+
+.about-section,
+.about-section h2,
+.about-section h3,
+.about-section p,
+.about-section ul,
+.about-section li {
+    color: #000;
+}
+
+.contact-section a {
+    color: #0d6efd;
+    text-decoration: none;
+}
+
+.social-icons {
+    margin-top: 20px;
+}
+
+.social-icon {
+    color: #fff;
+    font-size: 1.8rem;
+    margin: 0 15px;
+    text-decoration: none;
+}
+
+.contact-section {
+    background: none;
+    color: #111;
+    padding: 10px 0 6px 0;
+    text-align: center;
+}
+
+.footer-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 36px;
+}
+
+.footer-socials {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 0;
+}
+
+.footer-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    background: #111;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+
+.footer-icon i {
+    color: #fff;
+    font-size: 2rem;
+}
+
+.footer-icon:hover {
+    background: #333;
+}
+
+.footer-email {
+    color: #111;
+    font-size: 1rem;
+    margin: 0;
+}
+
+.footer-email a {
+    color: #111;
+    text-decoration: underline;
+}
+
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+    }
+    
+    .navbar .container {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .navbar-nav {
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        gap: 0;
+    }
+
+    .navbar-nav a {
+        display: block;
+        padding: 10px 0;
+    }
+    
+    .upload-section, #quiz-container, #result-container {
+        padding: 20px;
+    }
+    
+    .btn-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* --- Quiz and Result Sections --- */
+.hidden {
+    display: none;
+}
+
+#quiz-container, #result-container {
+    background: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 700px;
+    width: 100%;
+    text-align: center;
+}
+
+#result-container h2 {
+    margin-bottom: 20px;
+}
+
+/* NEW: Styles for the chart container */
+.chart-wrapper {
+    position: relative;
+    max-width: 250px;
+    margin: 20px auto;
+}
+
+/* NEW: Styles for the score text in the middle of the chart */
+.result-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #333;
+}
+
+#question-text {
+    margin-bottom: 30px;
+    font-size: 1.5rem;
+}
+/* --- the rest of the CSS is the same as before --- */
