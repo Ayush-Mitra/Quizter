@@ -1,10 +1,8 @@
-// Import the pdfjs-dist library
 import * as pdfjsLib from 'https://mozilla.github.io/pdf.js/build/pdf.mjs';
 
-// Set the workerSrc for pdfjs-dist, which is required
 pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://mozilla.github.io/pdf.js/build/pdf.worker.mjs';
 
-// --- DOM Elements ---
+// --- DOM Elements Done!!!! ---
 const fileUpload = document.getElementById('file-upload');
 const fileName = document.querySelector('.file-name');
 const createQuizBtn = document.getElementById('create-quiz-btn');
@@ -17,24 +15,21 @@ const nextBtn = document.getElementById('next-btn');
 const restartBtn = document.getElementById('restart-btn');
 const resultText = document.getElementById('result-text'); // For text inside chart
 
-// --- State Variables ---
+
 let quizQuestions = [];
 let currentQuestionIndex = 0;
 let score = 0;
-let resultChart; // To hold the chart instance
+let resultChart; 
 
-// A list of common English "stop words" to ignore when looking for keywords.
+// Lets Ignore the Keywords
 const stopWords = new Set(["a", "about", "above", "after", "again", "against", "all", "am", "an", "and", "any", "are", "aren't", "as", "at", "be", "because", "been", "before", "being", "below", "between", "both", "but", "by", "can't", "cannot", "could", "couldn't", "did", "didn't", "do", "does", "doesn't", "doing", "don't", "down", "during", "each", "few", "for", "from", "further", "had", "hadn't", "has", "hasn't", "have", "haven't", "having", "he", "he'd", "he'll", "he's", "her", "here", "here's", "hers", "herself", "him", "himself", "his", "how", "how's", "i", "i'd", "i'll", "i'm", "i've", "if", "in", "into", "is", "isn't", "it", "it's", "its", "itself", "let's", "me", "more", "most", "mustn't", "my", "myself", "no", "nor", "not", "of", "off", "on", "once", "only", "or", "other", "ought", "our", "ours", "ourselves", "out", "over", "own", "same", "shan't", "she", "she'd", "she'll", "she's", "should", "shouldn't", "so", "some", "such", "than", "that", "that's", "the", "their", "theirs", "them", "themselves", "then", "there", "there's", "these", "they", "they'd", "they'll", "they're", "they've", "this", "those", "through", "to", "too", "under", "until", "up", "very", "was", "wasn't", "we", "we'd", "we'll", "we're", "we've", "were", "weren't", "what", "what's", "when", "when's", "where", "where's", "which", "while", "who", "who's", "whom", "why", "why's", "with", "won't", "would", "wouldn't", "you", "you'd", "you'll", "you're", "you've", "your", "yours", "yourself", "yourselves"]);
 
-
-// --- EVENT LISTENERS ---
-
-// Update file name display on file selection
+// Doc Name
 fileUpload.addEventListener('change', () => {
     fileName.textContent = fileUpload.files.length > 0 ? fileUpload.files[0].name : 'No file selected';
 });
 
-// Handle the 'Create Quiz' button click
+// Create Quiz Btn
 createQuizBtn.addEventListener('click', async () => {
     if (!fileUpload.files[0]) {
         alert('Please select a PDF file first!');
@@ -60,7 +55,7 @@ createQuizBtn.addEventListener('click', async () => {
     }
 });
 
-// Handle the 'Next' button click during the quiz
+// Next Btn
 nextBtn.addEventListener('click', () => {
     currentQuestionIndex++;
     if (currentQuestionIndex < quizQuestions.length) {
@@ -70,7 +65,7 @@ nextBtn.addEventListener('click', () => {
     }
 });
 
-// Handle the 'Restart Quiz' button click on the results screen
+// Restart Btn Click
 restartBtn.addEventListener('click', () => {
     resultContainer.classList.add('hidden');
     uploadSection.classList.remove('hidden');
@@ -82,10 +77,8 @@ restartBtn.addEventListener('click', () => {
 });
 
 
-// --- CORE LOGIC ---
-
 /**
- * Extracts text content from an uploaded PDF file.
+ * Text Extraction
  * @param {File} file - The PDF file object from the input.
  * @returns {Promise<string>} A promise that resolves with the extracted text.
  */
@@ -112,9 +105,9 @@ async function extractTextFromPdf(file) {
 }
 
 /**
- * Extracts a potential keyword from a sentence for use as an answer.
- * @param {string} sentence The sentence to extract a keyword from.
- * @returns {string|null} The extracted keyword or null if none is suitable.
+ * Answer Extract.
+ * @param {string} sentence Keyword.
+ * @returns {string|null} keyword or null if no good find.
  */
 function extractKeyword(sentence) {
     const words = sentence.split(/\s+/);
@@ -123,12 +116,12 @@ function extractKeyword(sentence) {
     // Priority 1: Proper Nouns (capitalized words not at the start)
     for(let i = 1; i < words.length; i++) {
         if (words[i] && words[i].length > 3 && /^[A-Z]/.test(words[i]) && !stopWords.has(words[i].toLowerCase())) {
-            potentialKeywords.push(words[i].replace(/[.,:;]$/, '')); // Clean trailing punctuation
+            potentialKeywords.push(words[i].replace(/[.,:;]$/, '')); 
         }
     }
     if (potentialKeywords.length > 0) return potentialKeywords[0];
 
-    // Priority 2: Fallback to longest non-stopword
+    // Priority 2: Fallback to longest ignore word
     const filteredWords = words.filter(word => word.length > 4 && !stopWords.has(word.toLowerCase()));
     if(filteredWords.length === 0) return null;
 
@@ -137,7 +130,7 @@ function extractKeyword(sentence) {
 }
 
 /**
- * Generates higher-quality MCQs by identifying keywords.
+ * Identifying keywords.
  * @param {string} text The source text from the PDF.
  * @param {number} numQuestions The number of questions to generate.
  * @returns {Array<Object>} An array of question objects.
@@ -188,10 +181,8 @@ function generateBetterMcqs(text, numQuestions) {
 }
 
 
-// --- QUIZ UI FUNCTIONS ---
-
 /**
- * Hides the upload section and shows the quiz container to begin.
+ * Hides the upload section and shows the quiz container 
  */
 function startQuiz() {
     score = 0;
@@ -203,7 +194,7 @@ function startQuiz() {
 }
 
 /**
- * Displays the current question and its answer options.
+ * Shows qsn and optn
  */
 function showQuestion() {
     resetState();
@@ -217,7 +208,7 @@ function showQuestion() {
         if (answer.correct) {
             button.dataset.correct = true;
         }
-        button.addEventListener('click', selectAnswer, { once: true }); // event listener is removed after one click
+        button.addEventListener('click', selectAnswer, { once: true }); 
         answerButtonsEl.appendChild(button);
     });
 
@@ -225,7 +216,6 @@ function showQuestion() {
 }
 
 /**
- * Handles the logic when an answer button is clicked.
  * @param {Event} e The click event object.
  */
 function selectAnswer(e) {
@@ -234,17 +224,17 @@ function selectAnswer(e) {
 
     if (isCorrect) score++;
 
-    // Provide visual feedback for correct/wrong answers
+    // Green or Red clr ans
     Array.from(answerButtonsEl.children).forEach(button => {
         setStatusClass(button, button.dataset.correct === 'true');
-        button.disabled = true; // Disable all buttons after an answer is selected
+        button.disabled = true; // Slct ans = rip btn
     });
 
     nextBtn.classList.remove('hidden');
 }
 
 /**
- * Resets the state of the answer buttons and Next button before showing a new question.
+ * All btn wrking aftr next
  */
 function resetState() {
     nextBtn.classList.add('hidden');
@@ -254,7 +244,7 @@ function resetState() {
 }
 
 /**
- * Applies a 'correct' or 'wrong' CSS class to buttons for styling.
+ * Crct or wrong????
  */
 function setStatusClass(element, isCorrect) {
     element.classList.remove('correct', 'wrong');
@@ -262,7 +252,7 @@ function setStatusClass(element, isCorrect) {
 }
 
 /**
- * Displays the final score and results using a doughnut chart.
+ * Result!!!!!! Will I pass????
  */
 function showResults() {
     quizContainer.classList.add('hidden');
@@ -273,7 +263,7 @@ function showResults() {
 
     resultText.innerHTML = `${correctAnswers}<span style="font-size: 1.5rem; color: #666;"> / ${quizQuestions.length}</span>`;
 
-    // Ensure any old chart is destroyed before creating a new one
+    // No old chart lets create new one
     if (resultChart) {
         resultChart.destroy();
     }
@@ -287,8 +277,8 @@ function showResults() {
             datasets: [{
                 data: [correctAnswers, wrongAnswers],
                 backgroundColor: [
-                    '#007bff', // Blue for correct
-                    '#dc3545'  // Red for wrong
+                    '#007bff', // Blue 
+                    '#dc3545',  // Red 
                 ],
                 borderColor: '#ffffff',
                 borderWidth: 4
@@ -308,12 +298,11 @@ function showResults() {
     });
 }
 
-// --- UTILITY ---
 
 /**
- * Shuffles an array in place using the Fisher-Yates algorithm.
+ * Randomness
  * @param {Array} array The array to shuffle.
- * @returns {Array} The shuffled array.
+ * @returns {Array} shufld
  */
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {

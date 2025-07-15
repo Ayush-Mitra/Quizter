@@ -1,4 +1,4 @@
-/* General Body Styles */
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -22,11 +22,11 @@ body {
     padding: 20px 0;
 }
 
-/* Navbar Styles */
+
 .navbar {
     height: 48px;
     padding: 0 24px;
-    background: rgba(0, 0, 0, 0.3); /* semi-transparent black */
+    background: rgba(0, 0, 0, 0.3); /* Transparent Black Hex */
     box-shadow: none;
     display: flex;
     align-items: center;
@@ -72,7 +72,7 @@ body {
     color: #e0e0e0;
 }
 
-/* Main Content Styles */
+
 .main-content {
     padding: 60px 0;
     text-align: center;
@@ -90,7 +90,7 @@ body {
     min-height: 70vh;
 }
 
-/* --- Upload Section --- */
+
 #upload-section {
     background: rgba(255, 255, 255, 0.25);
     border-radius: 16px;
@@ -165,7 +165,7 @@ body {
     color: #e3f2fd;
 }
 
-/* --- Quiz and Result Sections --- */
+/* Rslt */
 .hidden {
     display: none !important;
 }
@@ -260,7 +260,6 @@ body {
 }
 
 
-/* --- About and Contact Sections --- */
 .about-section, .contact-section {
     padding: 60px 0;
     text-align: center;
@@ -374,8 +373,6 @@ body {
     text-decoration: underline;
 }
 
-
-/* --- Mobile Responsiveness --- */
 @media (max-width: 768px) {
     .container {
         width: 90%;
@@ -426,14 +423,12 @@ body {
     margin-bottom: 20px;
 }
 
-/* NEW: Styles for the chart container */
 .chart-wrapper {
     position: relative;
     max-width: 250px;
     margin: 20px auto;
 }
 
-/* NEW: Styles for the score text in the middle of the chart */
 .result-text {
     position: absolute;
     top: 50%;
@@ -448,4 +443,3 @@ body {
     margin-bottom: 30px;
     font-size: 1.5rem;
 }
-/* --- the rest of the CSS is the same as before --- */
